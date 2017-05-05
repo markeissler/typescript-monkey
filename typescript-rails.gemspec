@@ -8,13 +8,12 @@ Gem::Specification.new do |gem|
   gem.name          = 'typescript-rails'
   gem.version       = Typescript::Rails::VERSION
   gem.platform      = Gem::Platform::RUBY
-  gem.authors       = ['FUJI, Goro', 'Klaus Zanders']
-  gem.email         = %w(gfuji@cpan.org klaus.zanders@gmail.com)
+  gem.authors       = ['FUJI, Goro', 'Klaus Zanders', 'Mark Eissler']
+  gem.email         = %w(gfuji@cpan.org klaus.zanders@gmail.com moe@markeissler.org)
   gem.description   = %q{Adds Typescript to the Rails Asset pipeline}
   gem.summary       = %q{Adds Typescript to the Rails Asset pipeline}
   gem.homepage      = 'https://github.com/typescript-ruby/typescript-rails'
 
-  gem.add_runtime_dependency 'typescript-node', '>= 1.6.2'
   gem.add_runtime_dependency 'tilt'
   gem.add_runtime_dependency 'railties'
 
