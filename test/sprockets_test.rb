@@ -4,6 +4,10 @@ require 'typescript-rails'
 require 'action_controller/railtie'
 require 'sprockets/railtie'
 
+class SiteController < ActionController::Base
+  self.view_paths = File.expand_path('../fixtures', __FILE__)
+end
+
 class AssetsTest < ActiveSupport::TestCase
   include Minitest::PowerAssert::Assertions
 
@@ -13,6 +17,7 @@ class AssetsTest < ActiveSupport::TestCase
   def setup
     unless @@app_setup == true
       @@app_setup = true
+
       FileUtils.mkdir_p tmp_path
 
       @@app = Class.new(Rails::Application)
@@ -22,8 +27,9 @@ class AssetsTest < ActiveSupport::TestCase
       @@app.config.assets.configure do |env|
         env.cache = ActiveSupport::Cache.lookup_store(:memory_store)
       end
-      @@app.config.assets.paths << "#{File.dirname(__FILE__)}/fixtures/assets"
+      @@app.config.assets.paths << "#{File.dirname(__FILE__)}/fixtures/sprockets"
       @@app.paths['log'] = "#{tmp_path}/log/test.log"
+      @@app.config.secret_key_base = "abcd1234"
 
       @@app.initialize!
     end
@@ -38,16 +44,15 @@ class AssetsTest < ActiveSupport::TestCase
   end
 
   #
-  # These tests require sprockets processing with --noResolve turned off which
-  # results in reference resolution and concatenated files.
+  # These tests require sprockets processing with --noResolve turned on which
+  # results in no reference resolution. Separate files will be output.
   #
-  # Typescript::Rails::Compiler.compile = false
+  #
+  # Typescript::Rails::Compiler.compile = true (default setting)
   #
 
-  test 'assets .js.ts is compiled from TypeScript to JavaScript' do
-    byebug
-    assert { @@app.assets['javascripts/hello.js'].present? }
-    assert { @@app.assets['javascripts/hello.js'].source.include?('var log_to_console = function (x) {') }
-    assert { @@app.assets['javascripts/hello.js'].source.include?('var s = "Hello, world!";') }
+  test '//= require directives work' do
+    assert { @@app.assets['ref1_manifest.js'].source.match(/var f = function \(x, y\) \{\s*return x \+ y\;\s*\}\;\s*f\(1, 2\)\;\s*/) }
   end
+
 end

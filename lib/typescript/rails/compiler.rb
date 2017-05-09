@@ -1,10 +1,12 @@
 require 'typescript/rails'
+require 'typescript/rails/configuration'
 require 'open3'
 
 module Typescript::Rails::Compiler
   class TypescriptCompileError < RuntimeError; end
 
   class << self
+    attr_accessor :configuration
     attr_accessor :default_options
     attr_accessor :logger
 
@@ -69,7 +71,7 @@ module Typescript::Rails::Compiler
           raise RuntimeError, "Failed to find typescript compiler in local or global node environment."
         end
 
-        self.logger.info("#{module_name} processing: #{ts_path}")
+        log("#{module_name} processing: #{ts_path}")
 
         # compile file
         s = replace_relative_references(ts_path, source)
@@ -77,6 +79,10 @@ module Typescript::Rails::Compiler
         source_file.write(s)
         source_file.close
         args = self.default_options.map(&:dup)
+        # _args = [ "--out /dev/stdout", "--noResolve" ]
+        # if self.tsconfig && File.exist?(self.tsconfig)
+        #   _args.push("--project #{self.tsconfig}")
+        # end
         args.push(source_file.path)
         compiled_source, _, status = run_command(command_path, args)
 
@@ -222,5 +228,6 @@ module Typescript::Rails::Compiler
   end
 
   # @TODO: we should honor the tsconfig.json file if it exists!
-  self.default_options = ["--target es5", "--outFile /dev/stdout", "--noResolve"]
+  # @NOTE: we need to specify --removeComments to pass some parsing in tests. (should be an option)
+  # self.default_options = ["--target es5", "--outFile /dev/stdout", "--noResolve", "--removeComments"]
 end

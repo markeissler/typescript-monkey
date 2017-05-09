@@ -1,15 +1,15 @@
 # Configure coveralls environment
 
-require 'coveralls'
-require 'simplecov'
+# require 'coveralls'
+# require 'simplecov'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-]
-SimpleCov.start do
-  add_filter '.bundle/'
-end
+# SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+#     SimpleCov::Formatter::HTMLFormatter,
+#     Coveralls::SimpleCov::Formatter
+# ])
+# SimpleCov.start do
+#   add_filter '.bundle/'
+# end
 
 # Configure Rails environment
 ENV['RAILS_ENV'] = 'test'
@@ -17,9 +17,13 @@ ENV['RAILS_ENV'] = 'test'
 require 'rails'
 require 'rails/test_help'
 require 'minitest-power_assert'
+require 'byebug'
 
 # For generators
 require 'rails/generators/test_case'
+
+# Set ActiveSupport test order (:random, :sorted, :parallel)
+ActiveSupport::TestCase.test_order = :random
 
 def copy_routes
   routes = File.expand_path('../support/routes.rb', __FILE__)
@@ -27,4 +31,8 @@ def copy_routes
 
   FileUtils.mkdir_p(destination)
   FileUtils.cp routes, destination
+end
+
+def strip_comments(source)
+  source.gsub(%r{^//[^\n]*}m, '')
 end

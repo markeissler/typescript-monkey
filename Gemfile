@@ -10,5 +10,6 @@ group :test do
   gem 'coveralls'
   gem 'simplecov'
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
+  gem "byebug", '~> 9.0.6'
 end
 
