@@ -13,39 +13,27 @@ class AssetsTest < ActiveSupport::TestCase
   def setup
     unless @@app_setup == true
       @@app_setup = true
-      FileUtils.mkdir_p tmp_path
-
-      @@app = Class.new(Rails::Application)
-
-      @@app.config.eager_load = false
-      @@app.config.active_support.deprecation = :stderr
-      @@app.config.assets.configure do |env|
-        env.cache = ActiveSupport::Cache.lookup_store(:memory_store)
+      # reconfigure compiler to resolve references and concatenate files
+      Typescript::Rails.configure do |config|
+        config.compile = true
       end
-      @@app.config.assets.paths << "#{File.dirname(__FILE__)}/fixtures/assets"
-      @@app.paths['log'] = "#{tmp_path}/log/test.log"
 
-      @@app.initialize!
+      @@app = RailsApp.instance.app()
+      RailsApp.instance.asset_paths_append("#{File.dirname(__FILE__)}/fixtures/assets")
     end
   end
 
   def teardown
-    FileUtils.rm_rf tmp_path
-  end
-
-  def tmp_path
-    "#{File.dirname(__FILE__)}/tmp"
   end
 
   #
   # These tests require sprockets processing with --noResolve turned off which
   # results in reference resolution and concatenated files.
   #
-  # Typescript::Rails::Compiler.compile = false
+  # Typescript::Rails::Compiler.compile = true
   #
 
   test 'assets .js.ts is compiled from TypeScript to JavaScript' do
-    byebug
     assert { @@app.assets['javascripts/hello.js'].present? }
     assert { @@app.assets['javascripts/hello.js'].source.include?('var log_to_console = function (x) {') }
     assert { @@app.assets['javascripts/hello.js'].source.include?('var s = "Hello, world!";') }

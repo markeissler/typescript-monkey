@@ -1,15 +1,10 @@
 require 'typescript/rails'
-require 'typescript/rails/configuration'
 require 'open3'
 
 module Typescript::Rails::Compiler
   class TypescriptCompileError < RuntimeError; end
 
   class << self
-    attr_accessor :configuration
-    attr_accessor :default_options
-    attr_accessor :logger
-
     # Replace relative paths specified in /// <reference path="..." /> with absolute paths.
     #
     # @param [String] ts_path Source .ts path
@@ -78,7 +73,7 @@ module Typescript::Rails::Compiler
         source_file = Tempfile.new(["typescript-rails", ".ts"])
         source_file.write(s)
         source_file.close
-        args = self.default_options.map(&:dup)
+        args = Typescript::Rails.configuration.options.map(&:dup)
         # _args = [ "--out /dev/stdout", "--noResolve" ]
         # if self.tsconfig && File.exist?(self.tsconfig)
         #   _args.push("--project #{self.tsconfig}")
@@ -213,8 +208,8 @@ module Typescript::Rails::Compiler
       # @param [String] message to be logged
       #
       def log(message)
-        if self.logger
-          self.logger.debug(message)
+        if Typescript::Rails.configuration.logger
+          Typescript::Rails.configuration.logger.debug(message)
         end
       end
 
@@ -227,7 +222,4 @@ module Typescript::Rails::Compiler
       end
   end
 
-  # @TODO: we should honor the tsconfig.json file if it exists!
-  # @NOTE: we need to specify --removeComments to pass some parsing in tests. (should be an option)
-  # self.default_options = ["--target es5", "--outFile /dev/stdout", "--noResolve", "--removeComments"]
 end
