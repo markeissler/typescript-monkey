@@ -9,6 +9,7 @@ group :test do
   gem 'minitest-power_assert'
   gem 'coveralls'
   gem 'simplecov'
+  gem 'thor', '0.19.1'
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
   gem "byebug", '~> 9.0.6'
 end
