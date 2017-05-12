@@ -18,7 +18,8 @@ module Typescript::Rails
         "--target es5",
         "--outFile /dev/stdout",
         "--noResolve",
-        "--removeComments"
+        "--removeComments",
+        "--typeRoots ['#{File.expand_path("../lib", Typescript::Rails::Package.metadata_path())}']"
       ]
       @options = @_default_options.to_set
       @compile = false;

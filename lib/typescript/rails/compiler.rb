@@ -1,5 +1,5 @@
 require 'typescript/rails'
-require 'open3'
+require 'typescript/rails/package'
 
 module Typescript::Rails::Compiler
   class TypescriptCompileError < RuntimeError; end
@@ -61,8 +61,8 @@ module Typescript::Rails::Compiler
         end
       end
       begin
-        command_path = npm_tsc_path()
-        if command_path.empty?
+        command_path = Typescript::Rails::Package.compiler_bin()
+        if command_path.nil?
           raise RuntimeError, "Failed to find typescript compiler in local or global node environment."
         end
 
@@ -79,7 +79,7 @@ module Typescript::Rails::Compiler
         #   _args.push("--project #{self.tsconfig}")
         # end
         args.push(source_file.path)
-        compiled_source, _, status = run_command(command_path, args)
+        compiled_source, _, status = Typescript::Rails::CLI.run_command(command_path, args)
 
         filtered_output = nil
 
@@ -152,54 +152,6 @@ module Typescript::Rails::Compiler
     end
 
     private
-      # Returns closest path for npm bin directory
-      #
-      # The resolution process favors a local node_modules directory over a
-      # global installation.
-      #
-      # @return [String] path to directory on success, otherwise empty string
-      #
-      def npm_bin_path
-        npm_bin_path, stderr, status = run_command("npm", ["bin"])
-        unless status.success? && File.directory?(npm_bin_path.chomp!)
-          # try again with global resolution
-          npm_bin_path, stderr, status = run_command("npm", ["--global", "bin"])
-          unless status.success? && File.directory?(npm_bin_path.chomp!)
-            npm_bin_path = ""
-          end
-        end
-        npm_bin_path
-      end
-
-      # Returns path to typescript compiler (tsc)
-      #
-      # The resolution process examines local and global installation paths.
-      #
-      # @return [String] path to tsc on success, otherwise empty string
-      # @see npm_bin_path
-      #
-      def npm_tsc_path
-        npm_tsc_path = ""
-        npm_bin_path = npm_bin_path()
-        unless npm_bin_path.empty?
-          npm_tsc_path = [npm_bin_path, "tsc"].join('/')
-          unless File.executable?(npm_tsc_path)
-            npm_tsc_path = ""
-          end
-        end
-        npm_tsc_path
-      end
-
-      # Run a command with arguments
-      #
-      # @return [String, String, Process::Status] stdout, stderr, and the status
-      #   of the command results.
-      # @see Process::Status
-      #
-      def run_command(command, args=[])
-        args_string = args.join(" ")
-        _stdout, _stderr, _status = Open3.capture3("\"#{command}\" #{args_string}")
-      end
 
       # Log a message
       #
