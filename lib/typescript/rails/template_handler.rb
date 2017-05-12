@@ -16,6 +16,9 @@ class Typescript::Rails::TemplateHandler
   end
 end
 
+# Register template handler for .ts files, enable digest for .ts files
 ActiveSupport.on_load(:action_view) do
   ActionView::Template.register_template_handler :ts, Typescript::Rails::TemplateHandler
+  require 'action_view/dependency_tracker'
+  ActionView::DependencyTracker.register_tracker :ts, ActionView::DependencyTracker::ERBTracker
 end
