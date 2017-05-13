@@ -144,7 +144,7 @@ module Typescript::Rails::Compiler
           end
         end
         filtered_output ||= compiled_source
-      rescue Exception => e
+      rescue StandardError => e
         raise "Typescript error in file '#{ts_path}':\n#{e.message}"
       ensure
         source_file.unlink
