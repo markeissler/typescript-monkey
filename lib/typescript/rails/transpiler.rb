@@ -20,7 +20,7 @@ module Typescript::Rails
       transpiler_js_path = gem_javascripts_path()
 
       if transpiler_js_path
-        transpiler_js_path = transpiler_js_path.join("transpiler.ts")
+        transpiler_js_path = transpiler_js_path.join("dyrt.js")
         unless transpiler_js_path.file? && transpiler_js_path.readable?
           transpiler_js_path = nil
         end

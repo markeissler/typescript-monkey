@@ -1,9 +1,8 @@
 //
 // transpiler.ts
 //
-/// <reference types="typescriptServices.d.ts" />
 
-// let scripts: HTMLScriptElement = document.getElementsByName("script")[0] as HTMLScriptElement;
+/// <reference types="typescript/lib/typescriptServices" />
 let nodeList: NodeList = document.getElementsByTagName("script");
 Array.prototype.forEach.call(nodeList, (node, key, listObj, argument) => {
     const script = node as HTMLScriptElement;
