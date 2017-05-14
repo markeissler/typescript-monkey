@@ -10,9 +10,6 @@
 # Ignore secret environment configs
 .env
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
@@ -33,11 +30,9 @@ doc/yard
 doc/rdoc_converted
 doc/rdoc
 
-.sass-cache/*
-
-# Ignore precompiled assets
-/public/assets
-/output
+# Ignore generated assets
+/lib/assets/javascripts/dyrt*.js
+/lib/assets/javascripts/transpile*.js
 
 # Ignore coveralls output
 /coverage

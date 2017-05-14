@@ -7,12 +7,27 @@
   "args": ["--no-color"],
   "tasks": [
     {
+      "taskName": "all",
+      "isBuildCommand": true,
+      "showOutput": "always"
+    },
+    {
       "taskName": "transpile",
       "isBuildCommand": true,
       "showOutput": "always"
     },
     {
       "taskName": "transpile-min",
+      "isBuildCommand": true,
+      "showOutput": "always"
+    },
+    {
+      "taskName": "transpile-once",
+      "isBuildCommand": true,
+      "showOutput": "always"
+    },
+    {
+      "taskName": "transpile-once-min",
       "isBuildCommand": true,
       "showOutput": "always"
     },

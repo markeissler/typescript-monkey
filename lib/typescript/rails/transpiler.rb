@@ -7,14 +7,19 @@ module Typescript::Rails
   # A class that implements an interface to a dynamic runtime Typescript to
   # javascript transpiler.
   #
+  # The scripts that are returned by this class are dependent upon Typescript
+  # Services to be available.
+  #
+  # @see Typescript::Rails::Package.services_js
+  #
   class Transpiler
 
-    # Returns path to dynamic runtime transpiler (pre-transpiled version)
+    # Returns path to dynamic runtime transpiler
     #
     # The transpiler can be included with web content to transform embedded
     # Typescript wrapped in <script type="text/typescript"></script> tags.
     #
-    # @return [Pathname] path to dyrt source (pre-transpiled version)
+    # @return [Pathname] path to dyrt source
     #
     def self.dyrt_js_path
       transpiler_js_path = gem_javascripts_path()
@@ -29,12 +34,12 @@ module Typescript::Rails
       transpiler_js_path
     end
 
-    # Returns content for dynamic runtime transpiler (pre-transpiled version)
+    # Returns content for dynamic runtime transpiler
     #
     # The transpiler can be included with web content to transform embedded
     # Typescript wrapped in <script type="text/typescript"></script> tags.
     #
-    # @return [String] dyrt source (pre-transpiled version)
+    # @return [String] dyrt source
     #
     def self.dyrt_js
       transpiler_js = ""
@@ -52,7 +57,57 @@ module Typescript::Rails
     # The transpiler can be included with web content to transform embedded
     # Typescript wrapped in <script type="text/typescript"></script> tags.
     #
+    # The "once" compilers include an immediately invoked function expression
+    # (IIFE) that triggers transpile exactly once. Add this script to the
+    # bottom of the body in an HTML page; ideally, this should run last. The
+    # script does not, and probably should not, be run after DOM ready; however
+    # the Typescript objects in your page can wait for DOM ready.
+    #
     # @return [Pathname] path to dyrt source
+    #
+    def self.dyrt_once_js_path
+      transpiler_js_path = gem_javascripts_path()
+
+      if transpiler_js_path
+        transpiler_js_path = transpiler_js_path.join("dyrt_once.js")
+        unless transpiler_js_path.file? && transpiler_js_path.readable?
+          transpiler_js_path = nil
+        end
+      end
+
+      transpiler_js_path
+    end
+
+    # Returns content for dynamic runtime transpiler
+    #
+    # The transpiler can be included with web content to transform embedded
+    # Typescript wrapped in <script type="text/typescript"></script> tags.
+    #
+    # The "once" compilers include an immediately invoked function expression
+    # (IIFE) that triggers transpile exactly once. Add this script to the
+    # bottom of the body in an HTML page; ideally, this should run last. The
+    # script does not, and probably should not, be run after DOM ready; however
+    # the Typescript objects in your page can wait for DOM ready.
+    #
+    # @return [String] dyrt source
+    #
+    def self.dyrt_once_js
+      transpiler_js = ""
+      transpiler_js_path = self.dyrt_once_js_path()
+
+      unless transpiler_js_path.nil?
+        transpiler_js = transpiler_js_path.read()
+      end
+
+      transpiler_js
+    end
+
+    # Returns path to dynamic runtime transpiler (pre-transpiled version)
+    #
+    # The transpiler can be included with web content to transform embedded
+    # Typescript wrapped in <script type="text/typescript"></script> tags.
+    #
+    # @return [Pathname] path to dyrt source (pre-transpiled version)
     #
     def self.dyrt_ts_path
       transpiler_ts_path = gem_typescripts_path()
@@ -67,12 +122,12 @@ module Typescript::Rails
       transpiler_ts_path
     end
 
-    # Returns content for dynamic runtime transpiler
+    # Returns content for dynamic runtime transpiler (pre-transpiled version)
     #
     # The transpiler can be included with web content to transform embedded
     # Typescript wrapped in <script type="text/typescript"></script> tags.
     #
-    # @return [String] typescript transpiler source
+    # @return [String] typescript transpiler source (pre-transpiled version)
     #
     def self.dyrt_ts
       transpiler_ts = ""

@@ -9,11 +9,11 @@
     "noImplicitAny": false,
     "lib": ["es5", "dom"],
     "moduleResolution": "node",
-    // "outDir": "./lib/assets/javascripts"
-    "outDir": "output"
+    "outDir": "./lib/assets/javascripts"
   },
   "files": [
-    "./lib/assets/typescripts/transpiler.ts"
+    "./lib/assets/typescripts/transpiler.ts",
+    "./lib/assets/typescripts/transpile_once.ts"
   ],
   "exclude": [
     "node_modules"
