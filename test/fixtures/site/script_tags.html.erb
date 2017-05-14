@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <%= javascript_include_tag 'application' %>
+  <title>Document</title>
+</head>
+<body>
+  <div id="target"></div>
+  <script type="text/typescript">
+    class Person {
+        private _name = "Alice";
+
+        public get name(): string {
+            return this._name
+        }
+    }
+  </script>
+  <script src="es5.js"></script>
+</body>
+</html>

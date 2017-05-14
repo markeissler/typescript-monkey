@@ -1,0 +1,32 @@
+{
+  "name": "typescript-rails",
+  "version": "1.0.0",
+  "description": "Typescript adapter for the Rails asset pipeline.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markeissler/typescript-rails.git"
+  },
+  "author": "Mark Eissler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markeissler/typescript-rails/issues"
+  },
+  "homepage": "https://github.com/markeissler/typescript-rails#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^3.1.0",
+    "gulp-ignore": "^2.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^3.1.6",
+    "gulp-uglify": "^2.1.2",
+    "run-sequence": "^1.2.2",
+    "typescript": "^2.3.2"
+  }
+}
