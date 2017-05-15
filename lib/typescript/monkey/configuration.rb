@@ -1,4 +1,6 @@
-module Typescript::Rails
+require 'typescript/monkey/package'
+
+module Typescript::Monkey
   class << self
     attr_accessor :configuration
   end
@@ -19,7 +21,7 @@ module Typescript::Rails
         "--outFile /dev/stdout",
         "--noResolve",
         "--removeComments",
-        "--typeRoots ['#{File.expand_path("../lib", Typescript::Rails::Package.metadata_path())}']"
+        "--typeRoots ['#{File.expand_path("../lib", Typescript::Monkey::Package.metadata_path())}']"
       ]
       @options = @_default_options.to_set
       @compile = false;

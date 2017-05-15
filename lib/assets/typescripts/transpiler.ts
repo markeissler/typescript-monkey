@@ -1,6 +1,6 @@
 //
 // transpiler.ts
-// typescript-rails
+// typescript-monkey
 //
 
 /// <reference types="typescript/lib/typescriptServices" />
@@ -78,8 +78,6 @@ namespace TypescriptRails {
          */
         public transpileScript(script: HTMLScriptElement): HTMLScriptElement {
             if (script.type !== "text/typescript") return;
-
-            console.log("dynamic ts transpiler: transpiling typescript");
 
             const compilerOptions: ts.TranspileOptions = {
                 compilerOptions: {

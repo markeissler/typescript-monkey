@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), 'test_helper.rb')
-require 'typescript-rails'
+require 'typescript-monkey'
 
 require 'action_controller/railtie'
 require 'sprockets/railtie'
@@ -26,7 +26,7 @@ class SprocketsTest < ActiveSupport::TestCase
   # results in no reference resolution. Separate files will be output.
   #
   #
-  # Typescript::Rails::Compiler.compile = false (default setting)
+  # Typescript::Monkey::Compiler.compile = false (default setting)
   #
 
   test '//= require directives work' do

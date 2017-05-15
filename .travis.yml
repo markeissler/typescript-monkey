@@ -1,9 +1,27 @@
+language: ruby
+
+before_install:
+  - "npm install"
+  - "gem update --system 2.6.12"
+  - "gem update bundler"
+
+script:
+  - bundle exec rake test
+
 rvm:
- - 2.0.0
- - 2.1.1
-notifications:
-  email: false
-script: bundle exec rake test
+  - 2.0.0
+  - 2.3.4
+  - 2.4.1
+  - ruby-head
+
+sudo: false
+
+cache: bundler
+
 matrix:
   allow_failures:
-    - rvm:
+    - rvm: ruby-head
+  fast_finish: true
+
+notifications:
+  email: false

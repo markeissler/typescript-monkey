@@ -25,15 +25,15 @@ require 'rails/generators/test_case'
 # Set ActiveSupport test order (:random, :sorted, :parallel)
 ActiveSupport::TestCase.test_order = :random
 
-# Default Typescript::Rails compiler configuration
-require 'typescript/rails/configuration'
-Typescript::Rails.configure do |config|
+# Default Typescript::Monkey compiler configuration
+require 'typescript/monkey/configuration'
+Typescript::Monkey.configure do |config|
   # option config
   config.compile = false
   # setup logging for debugging
   debug_log_path = Pathname.new("#{File.dirname(__FILE__)}/tmp/log")
   FileUtils.mkdir_p(debug_log_path)
-  config.logger = Logger.new(debug_log_path.join("typescript-rails.log").to_s)
+  config.logger = Logger.new(debug_log_path.join("typescript-monkey.log").to_s)
 end
 
 def copy_routes
@@ -103,7 +103,7 @@ class RailsApp
 
   def self.finalize(object_id)
     # if logging has been configured, assume we want to keep the logs!
-    unless Typescript::Rails.configuration.logger
+    unless Typescript::Monkey.configuration.logger
       FileUtils.rm_rf(@__tmp_path__)
     end
   end

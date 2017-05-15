@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in typescript-rails.gemspec
+# Specify your gem's dependencies in typescript-monkey.gemspec
 gemspec
 
 group :test do

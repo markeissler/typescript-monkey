@@ -1,7 +1,7 @@
 # require File.join(File.dirname(__FILE__), 'test_helper.rb')
 require 'test_helper'
 require 'action_controller'
-require 'typescript-rails'
+require 'typescript-monkey'
 require 'sprockets/railtie'
 
 class SiteController < ActionController::Base
