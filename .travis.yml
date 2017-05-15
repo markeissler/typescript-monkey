@@ -1,9 +1,21 @@
+language: ruby
+
+before_install:
+  - "rm ${BUNDLE_GEMFILE}.lock"
+  - "gem update --system 2.6.12"
+  - "gem update bundler"
+
+script:
+  - rake test
+
 rvm:
- - 2.0.0
- - 2.1.1
-notifications:
-  email: false
-script: bundle exec rake test
+  - 2.3.0
+  - ruby-head
+
 matrix:
   allow_failures:
-    - rvm:
+    - rvm: ruby-head
+  fast_finish: true
+
+notifications:
+  email: false
