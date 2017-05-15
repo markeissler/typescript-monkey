@@ -1,7 +1,6 @@
 language: ruby
 
 before_install:
-  - "rm ${BUNDLE_GEMFILE}.lock"
   - "gem update --system 2.6.12"
   - "gem update bundler"
 
@@ -9,8 +8,14 @@ script:
   - rake test
 
 rvm:
-  - 2.3.0
+  - 2.0.0
+  - 2.3.4
+  - 2.4.1
   - ruby-head
+
+sudo: false
+
+cache: bundler
 
 matrix:
   allow_failures:
