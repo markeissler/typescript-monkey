@@ -1,7 +1,7 @@
-require 'typescript/rails'
-require 'typescript/rails/package'
+require 'typescript/monkey'
+require 'typescript/monkey/package'
 
-module Typescript::Rails::Compiler
+module Typescript::Monkey::Compiler
   class TypescriptCompileError < RuntimeError; end
 
   class << self
@@ -61,7 +61,7 @@ module Typescript::Rails::Compiler
         end
       end
       begin
-        command_path = Typescript::Rails::Package.compiler_bin()
+        command_path = Typescript::Monkey::Package.compiler_bin()
         if command_path.nil?
           raise RuntimeError, "Failed to find typescript compiler in local or global node environment."
         end
@@ -70,16 +70,16 @@ module Typescript::Rails::Compiler
 
         # compile file
         s = replace_relative_references(ts_path, source)
-        source_file = Tempfile.new(["typescript-rails", ".ts"])
+        source_file = Tempfile.new(["typescript-monkey", ".ts"])
         source_file.write(s)
         source_file.close
-        args = Typescript::Rails.configuration.options.map(&:dup)
+        args = Typescript::Monkey.configuration.options.map(&:dup)
         # _args = [ "--out /dev/stdout", "--noResolve" ]
         # if self.tsconfig && File.exist?(self.tsconfig)
         #   _args.push("--project #{self.tsconfig}")
         # end
         args.push(source_file.path)
-        compiled_source, _, status = Typescript::Rails::CLI.run_command(command_path, args)
+        compiled_source, _, status = Typescript::Monkey::CLI.run_command(command_path, args)
 
         filtered_output = nil
 
@@ -160,8 +160,8 @@ module Typescript::Rails::Compiler
       # @param [String] message to be logged
       #
       def log(message)
-        if Typescript::Rails.configuration.logger
-          Typescript::Rails.configuration.logger.debug(message)
+        if Typescript::Monkey.configuration.logger
+          Typescript::Monkey.configuration.logger.debug(message)
         end
       end
 

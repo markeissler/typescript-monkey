@@ -1,4 +1,4 @@
-module Typescript::Rails
+module Typescript::Monkey
   require 'pathname'
   require_relative 'cli'
 
@@ -122,7 +122,7 @@ module Typescript::Rails
     # Returns path to Typescript services javascript source
     #
     # The Typescript services can be included with web content to provide
-    # embedded Typescript functionality. This Typescript::Rails::Transpiler
+    # embedded Typescript functionality. This Typescript::Monkey::Transpiler
     # leverages services to transpile <script type="text/typescript"> tags
     # at runtime.
     #
@@ -144,7 +144,7 @@ module Typescript::Rails
     # Returns content for Typescript services javascript source
     #
     # The Typescript services can be included with web content to provide
-    # embedded Typescript functionality. This Typescript::Rails::Transpiler
+    # embedded Typescript functionality. This Typescript::Monkey::Transpiler
     # leverages services to transpile <script type="text/typescript"> tags
     # at runtime.
     #
@@ -192,10 +192,10 @@ module Typescript::Rails
             raise ArgumentError, "invalid directory specified: #{directory}"
           end
 
-          npm_path, stderr, status = Typescript::Rails::CLI.run_command("npm", [directory])
+          npm_path, stderr, status = Typescript::Monkey::CLI.run_command("npm", [directory])
           unless status.success? && File.directory?(npm_path.chomp!)
             # try again with global resolution
-            npm_path, stderr, status = Typescript::Rails::CLI.run_command("npm", ["--global", directory])
+            npm_path, stderr, status = Typescript::Monkey::CLI.run_command("npm", ["--global", directory])
             unless status.success? && File.directory?(npm_path.chomp!)
               npm_path = ""
             end
@@ -213,7 +213,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Package.npm_path_for
+        # @see Typescript::Monkey::Package.npm_path_for
         #
         def npm_root_path
           @npm_root_path ||= npm_path_for("root")
@@ -228,7 +228,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Packags.npm_path_for
+        # @see Typescript::Monkey::Packags.npm_path_for
         #
         def npm_bin_path
           @npm_bin_path ||= npm_path_for("bin")

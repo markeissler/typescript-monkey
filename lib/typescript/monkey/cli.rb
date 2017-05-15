@@ -1,4 +1,4 @@
-module Typescript::Rails
+module Typescript::Monkey
   require 'open3'
 
   #

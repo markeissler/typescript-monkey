@@ -1,5 +1,5 @@
 {
-  "name": "typescript-rails",
+  "name": "typescript-monkey",
   "version": "1.0.0",
   "description": "Typescript adapter for the Rails asset pipeline.",
   "directories": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markeissler/typescript-rails.git"
+    "url": "git+https://github.com/markeissler/typescript-monkey.git"
   },
   "author": "Mark Eissler",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markeissler/typescript-rails/issues"
+    "url": "https://github.com/markeissler/typescript-monkey/issues"
   },
-  "homepage": "https://github.com/markeissler/typescript-rails#readme",
+  "homepage": "https://github.com/markeissler/typescript-monkey#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",

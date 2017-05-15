@@ -1,8 +1,8 @@
 require 'rails/engine'
 require 'rails/generators'
-require 'typescript/rails/js_hook'
+require 'typescript/monkey/js_hook'
 
-class Typescript::Rails::Engine < Rails::Engine
+class Typescript::Monkey::Engine < Rails::Engine
   # To become the default generator...
   # config.app_generators.javascript_engine :typescript
 
@@ -12,7 +12,7 @@ class Typescript::Rails::Engine < Rails::Engine
 
   initializer 'override js_template hook' do |app|
     if app.config.generators.rails[:javascript_engine] == :typescript
-      ::Rails::Generators::NamedBase.send :include, Typescript::Rails::JsHook
+      ::Rails::Generators::NamedBase.send :include, Typescript::Monkey::JsHook
     end
   end
 end

@@ -1,4 +1,4 @@
-module Typescript::Rails
+module Typescript::Monkey
   require 'pathname'
 
   #
@@ -10,7 +10,7 @@ module Typescript::Rails
   # The scripts that are returned by this class are dependent upon Typescript
   # Services to be available.
   #
-  # @see Typescript::Rails::Package.services_js
+  # @see Typescript::Monkey::Package.services_js
   #
   class Transpiler
 
@@ -205,7 +205,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Transpiler.gem_path_for
+        # @see Typescript::Monkey::Transpiler.gem_path_for
         #
         def gem_root_path
           gem_path_for("root")
@@ -215,7 +215,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Transpiler.gem_path_for
+        # @see Typescript::Monkey::Transpiler.gem_path_for
         #
         def gem_lib_path
           gem_path_for("lib")
@@ -225,7 +225,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Transpiler.gem_path_for
+        # @see Typescript::Monkey::Transpiler.gem_path_for
         #
         def gem_assets_path
           gem_path_for("assets")
@@ -235,7 +235,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Transpiler.gem_path_for
+        # @see Typescript::Monkey::Transpiler.gem_path_for
         #
         def gem_javascripts_path
           gem_path_for("javascripts")
@@ -245,7 +245,7 @@ module Typescript::Rails
         #
         # @return [Pathname] path to directory on success, otherwise nil
         #
-        # @see Typescript::Rails::Transpiler.gem_path_for
+        # @see Typescript::Monkey::Transpiler.gem_path_for
         #
         def gem_typescripts_path
           gem_path_for("typescripts")

@@ -1,6 +1,6 @@
 //
 // transpile_once.ts
-// typescript-rails
+// typescript-monkey
 //
 // Run the transpiler once against the DOM.
 //

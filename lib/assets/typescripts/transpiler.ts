@@ -1,6 +1,6 @@
 //
 // transpiler.ts
-// typescript-rails
+// typescript-monkey
 //
 
 /// <reference types="typescript/lib/typescriptServices" />

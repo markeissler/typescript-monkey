@@ -1,6 +1,6 @@
 //
 // gulpfile.js
-// typescript-rails
+// typescript-monkey
 //
 var gulp = require("gulp");
 var ts = require("gulp-typescript");

@@ -1,5 +1,5 @@
 module Typescript
-  module Rails
+  module Monkey
     module JsHook
       extend ActiveSupport::Concern
 

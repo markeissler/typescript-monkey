@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), 'test_helper.rb')
-require 'typescript-rails'
+require 'typescript-monkey'
 
 require 'action_controller/railtie'
 require 'sprockets/railtie'
@@ -14,7 +14,7 @@ class ReferencesTest < ActiveSupport::TestCase
     unless @@app_setup == true
       @@app_setup = true
       # reconfigure compiler to resolve references and concatenate files
-      Typescript::Rails.configure do |config|
+      Typescript::Monkey.configure do |config|
         config.compile = true
       end
 
@@ -30,7 +30,7 @@ class ReferencesTest < ActiveSupport::TestCase
   # These tests require sprockets processing with --noResolve turned off which
   # results in reference resolution and concatenated files.
   #
-  # Typescript::Rails::Compiler.compile = true
+  # Typescript::Monkey::Compiler.compile = true
   #
 
   test '<reference> to other .ts file works' do
