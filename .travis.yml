@@ -1,6 +1,7 @@
 language: ruby
 
 before_install:
+  - "npm install"
   - "gem update --system 2.6.12"
   - "gem update bundler"
 
