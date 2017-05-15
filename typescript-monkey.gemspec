@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.name          = 'typescript-monkey'
   gem.version       = Typescript::Monkey::VERSION
   gem.platform      = Gem::Platform::RUBY
-  gem.authors       = ['Mark Eissler', 'FUJI, Goro', 'Klaus Zanders']
-  gem.email         = %w(moe@markeissler.org gfuji@cpan.org klaus.zanders@gmail.com)
+  gem.authors       = ['Mark Eissler']
+  gem.email         = %w(moe@markeissler.org)
   gem.description   = %q{Adds Typescript to the Rails Asset pipeline}
   gem.summary       = %q{Adds Typescript to the Rails Asset pipeline}
   gem.homepage      = 'https://github.com/markeissler/typescript-monkey'
