@@ -79,8 +79,6 @@ namespace TypescriptRails {
         public transpileScript(script: HTMLScriptElement): HTMLScriptElement {
             if (script.type !== "text/typescript") return;
 
-            console.log("dynamic ts transpiler: transpiling typescript");
-
             const compilerOptions: ts.TranspileOptions = {
                 compilerOptions: {
                     module: ts.ModuleKind.CommonJS,
