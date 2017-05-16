@@ -1,18 +1,18 @@
-require 'typescript/rails'
+require 'typescript/monkey'
 require 'tilt/template'
 
-class Typescript::Rails::Template < ::Tilt::Template
+class Typescript::Monkey::Template < ::Tilt::Template
   self.default_mime_type = 'application/javascript'
 
   # @!scope class
   class_attribute :default_bare
 
   def self.engine_initialized?
-    defined? ::Typescript::Rails::Compiler
+    defined? ::Typescript::Monkey::Compiler
   end
 
   def initialize_engine
-    require_template_library 'typescript/rails/compiler'
+    require_template_library 'typescript/monkey/compiler'
   end
 
   def prepare
@@ -22,7 +22,7 @@ class Typescript::Rails::Template < ::Tilt::Template
   end
 
   def evaluate(context, locals, &block)
-    @output ||= ::Typescript::Rails::Compiler.compile(file, data, context)
+    @output ||= ::Typescript::Monkey::Compiler.compile(file, data, context)
   end
 
   # @override

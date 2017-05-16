@@ -1,6 +1,6 @@
-require 'typescript/rails'
+require 'typescript/monkey'
 
-class Typescript::Rails::Transformer
+class Typescript::Monkey::Transformer
   def self.instance
     @instance ||= new
   end
@@ -14,7 +14,7 @@ class Typescript::Rails::Transformer
     source   = input[:data]
     context  = input[:environment].context_class.new(input)
 
-    result = ::Typescript::Rails::Compiler.compile(filename, source, context)
+    result = ::Typescript::Monkey::Compiler.compile(filename, source, context)
     { data: result }
   end
 end

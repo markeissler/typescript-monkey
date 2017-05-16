@@ -1,0 +1,10 @@
+{
+  "name": "rails-project",
+  "description": "rails-project",
+  "version": "0.0.1",
+  "dependencies": {
+    "@types/jquery": "^2.0.41",
+    "@types/node": "^7.0.14",
+    "typescript": "^2.3.1"
+  }
+}

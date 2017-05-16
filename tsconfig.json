@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "lib": ["es5", "dom"],
+    "moduleResolution": "node",
+    "outDir": "./lib/assets/javascripts"
+  },
+  "files": [
+    "./lib/assets/typescripts/transpiler.ts",
+    "./lib/assets/typescripts/transpile_once.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
+}
