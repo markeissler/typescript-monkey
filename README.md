@@ -1,6 +1,6 @@
 # TypeScript Monkey [![Build Status](https://api.travis-ci.org/markeissler/typescript-monkey.svg?branch=feature/typescript-monkey)](https://travis-ci.org/markeissler/typescript-monkey) [![Coverage Status](https://coveralls.io/repos/github/markeissler/typescript-monkey/badge.svg?branch=feature%2Ftypescript-monkey)](https://coveralls.io/github/markeissler/typescript-monkey?branch=feature%2Ftypescript-monkey)
 
-This is a TypeScript adapter for the Rails asset pipeline.
+This is a TypeScript transpiler engine for the Rails asset pipeline.
 
 >BETA: TypeScript Monkey is currently in pre-release. That doesn't mean it's not ready for production, it just means it
 hasn't been tested by a large audience yet. The more the merrier and the faster we get to v1.0. Install it, open issues

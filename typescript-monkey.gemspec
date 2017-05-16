@@ -10,8 +10,8 @@ Gem::Specification.new do |gem|
   gem.platform      = Gem::Platform::RUBY
   gem.authors       = ['Mark Eissler']
   gem.email         = %w(moe@markeissler.org)
-  gem.description   = %q{Adds Typescript to the Rails Asset pipeline}
-  gem.summary       = %q{Adds Typescript to the Rails Asset pipeline}
+  gem.description   = %q{A TypeScript transpiler engine for the Rails asset pipeline.}
+  gem.summary       = %q{Adds TypeScript to JavaScript transpilation support to the Rails Asset pipeline.}
   gem.homepage      = 'https://github.com/markeissler/typescript-monkey'
 
   gem.add_runtime_dependency 'tilt'
