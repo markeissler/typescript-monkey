@@ -30,6 +30,9 @@ doc/yard
 doc/rdoc_converted
 doc/rdoc
 
+# Ignore generated gem files
+/*.gem
+
 # Ignore generated assets
 /lib/assets/javascripts/dyrt*.js
 /lib/assets/javascripts/transpile*.js
