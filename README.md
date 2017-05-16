@@ -19,7 +19,7 @@ For more information on TypeScript visit the [TypeScript](http://www.typescriptl
 ### Node.js
 
 One of the goals of __TypeScript Monkey__ is to reduce the dependence on third-party gems which aren't under active
-development. This gem does require that [Node.js]() has been installed either globally or locally. Specifically,
+development. This gem does require that [Node.js](https://nodejs.org/) has been installed either globally or locally. Specifically,
 TypeScript support (language and compiler) is provided by the TypeScript package for Node. <u>If installed locally,
 it is not recommended that you commit your `node_modules` directory to source control.</u>
 
@@ -29,11 +29,13 @@ To install Node.js support, our recommendation is to use an appropriate package 
 
 [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/)
 
-#### Confused about package managers?
+#### Recommended package managers
 
 For MacOS, our recommendation is [Homebrew](https://brew.sh/); for Windows your best bet is probably [Chocolatey](http://chocolatey.org/).
 Go and install a package manager first, then install node, then come back here. If you're on Linux, well, the assumption
 is that you probably know what you're doing already!
+
+>NOTE: Another obvious choice for Windows is [NuGet](https://www.nuget.org/) but it appears that the Node package there is stale.
 
 ## Installation
 
@@ -107,7 +109,7 @@ app/assets/javascripts/
     └── superduper.ts
 ```
 
-__superduper.ts__
+#### File example: superduper.ts
 
 ```ts
 class SuperDuper {
@@ -127,7 +129,7 @@ $(() => {
 
 Then, your `application.js` file might look like this:
 
-__application.js__
+#### File example: application.js
 
 ```js
 // This is a manifest file that'll be compiled into application.js, which will include all the files
