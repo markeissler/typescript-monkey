@@ -1,26 +1,34 @@
-# -*- encoding: utf-8 -*-
+#
+# typescript-monkey.gemspec
+#
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+require 'date'
 require 'typescript/monkey'
 
-Gem::Specification.new do |gem|
-  gem.name          = 'typescript-monkey'
-  gem.version       = Typescript::Monkey::VERSION
-  gem.platform      = Gem::Platform::RUBY
-  gem.authors       = ['Mark Eissler']
-  gem.email         = %w(moe@markeissler.org)
-  gem.description   = %q{A TypeScript transpiler engine for the Rails asset pipeline.}
-  gem.summary       = %q{Adds TypeScript to JavaScript transpilation support to the Rails Asset pipeline.}
-  gem.homepage      = 'https://github.com/markeissler/typescript-monkey'
+Gem::Specification.new do |spec|
+  spec.name          = "typescript-monkey"
+  spec.version       = Typescript::Monkey::VERSION
+  spec.date          = Date.today.to_s
+  spec.platform      = Gem::Platform::RUBY
 
-  gem.add_runtime_dependency 'tilt'
-  gem.add_runtime_dependency 'railties'
+  spec.authors       = ["Mark Eissler"]
+  spec.email         = "moe@markeissler.org"
 
-  gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ['lib']
+  spec.summary       = %q{A TypeScript transpiler engine for the Rails asset pipeline.}
+  spec.description   = %q{Adds TypeScript to JavaScript transpilation support to the Rails Asset pipeline.}
 
-  gem.required_ruby_version = '>= 2.0.0'
+  spec.homepage      = "https://github.com/markeissler/typescript-monkey"
+  spec.license       = "MIT"
+
+  spec.add_runtime_dependency 'tilt', '~> 2.0', '>= 2.0.0'
+  spec.add_runtime_dependency 'railties', '>= 4.0.0', '< 5.0.0'
+
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.required_ruby_version = '>= 2.0.0'
 end
